@@ -10,7 +10,7 @@ public class WaveSpawner : MonoBehaviour
 
     public float timeBetweenWaves = 5f;
     private float Countdown = 2f;
-    private int waveNumber = 1;
+    private int waveIndex = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,20 +22,21 @@ public class WaveSpawner : MonoBehaviour
     {
         if (Countdown <= 0f)
         {
-            SpawnWave();
+            StartCoroutine(SpawnWave());
             Countdown = timeBetweenWaves;
         }
 
         Countdown -= Time.deltaTime;
     }
 
-    void SpawnWave()
+    IEnumerator SpawnWave()
     {
-        for (int i = 0; i< waveNumber; i++)
+        for (int i = 0; i< waveIndex; i++)
         {
             SpawnEnemy();
+            yield return new WaitForSeconds(0.5f);
         }
-        waveNumber++;
+        waveIndex++;
     }
 
     void SpawnEnemy()
