@@ -11,6 +11,12 @@ public class Turret : MonoBehaviour
     public float rotationSpeed = 5f;
     public float turnSpeed = 10f;
 
+    public GameObject Bulletpref;
+    public Transform firePoint;
+
+    public float FireRate = 1f;
+    private float fireCountDown = 0f;
+
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
@@ -53,6 +59,23 @@ public class Turret : MonoBehaviour
 
         // smooth rotation
         partToRotate.rotation = Quaternion.Lerp(partToRotate.rotation, Quaternion.Euler(0f, rotation.y, 0f), Time.deltaTime * rotationSpeed * turnSpeed);
+
+        if (fireCountDown <= 0f)
+        {
+            Shoot();
+            fireCountDown = 1f / FireRate;
+        }
+
+        fireCountDown -= Time.deltaTime;
+    }
+
+    void Shoot()
+    {
+        GameObject BulletGo = (GameObject)Instantiate(Bulletpref, firePoint.position, firePoint.rotation);
+        bullet Bullet = BulletGo.GetComponent<bullet>();
+
+        if (Bullet != null)
+            Bullet.seek(target);
     }
 
     private void OnDrawGizmosSelected()
