@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class WaveSpawner : MonoBehaviour
 
     private int currentEnemies = 0;
     public int maxEnemies = 20;
+
+    public GameObject PanelWin;
 
     void Update()
     {
@@ -30,7 +33,11 @@ public class WaveSpawner : MonoBehaviour
         for (int i = 0; i < waveIndex; i++)
         {
             if (currentEnemies >= maxEnemies)
+            {
+                PanelWin.SetActive(true);
                 yield break;
+            }
+                
 
             SpawnEnemy();
             yield return new WaitForSeconds(0.5f);
