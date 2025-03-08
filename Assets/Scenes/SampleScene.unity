@@ -6814,9 +6814,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a37e30b29b432024bb6d03102731b47d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 6485529585362655597, guid: 94210cabe1e0be04dac83760c3793691, type: 3}
+  enemyPrefabs:
+  - {fileID: 6485529585362655597, guid: 94210cabe1e0be04dac83760c3793691, type: 3}
+  - {fileID: 2771301406167499713, guid: e052d9cfb7c3e5a47ad8bfcd3a1228c3, type: 3}
+  - {fileID: 8804928649453032815, guid: 45212fd5baa830447a89ae1f7d0db3ba, type: 3}
   SpawnPoint: {fileID: 1138746081}
-  timeBetweenWaves: 2
+  timeBetweenWaves: 10
   maxEnemies: 1500
 --- !u!4 &887059539
 Transform:
@@ -6847,7 +6850,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   standardTurretPrefab: {fileID: 3520308125193478939, guid: 5335c6a70bb2fad43942bde18805f98c, type: 3}
   AnotherTurretPrefab: {fileID: 7829168575644008914, guid: 21594331b90277f4c83711cd3171efde, type: 3}
-  MiniGunPrefab: {fileID: 3520308125193478939, guid: 73116be23f245df488685ad679b9455e, type: 3}
+  MiniGunPrefab: {fileID: 4353749544568705826, guid: 73116be23f245df488685ad679b9455e, type: 3}
 --- !u!1001 &888612217
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
-    public Transform enemyPrefab;
+    public Transform[] enemyPrefabs; // Array con los 3 tipos de enemigos
     public Transform SpawnPoint;
 
     public float timeBetweenWaves = 5f;
     private float Countdown = 2f;
     private int waveIndex = 0;
 
-    private int currentEnemies = 0; 
-    public int maxEnemies = 20; 
+    private int currentEnemies = 0;
+    public int maxEnemies = 20;
 
     void Update()
     {
@@ -30,7 +30,7 @@ public class WaveSpawner : MonoBehaviour
         for (int i = 0; i < waveIndex; i++)
         {
             if (currentEnemies >= maxEnemies)
-                yield break; 
+                yield break;
 
             SpawnEnemy();
             yield return new WaitForSeconds(0.5f);
@@ -40,11 +40,13 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Instantiate(enemyPrefab, SpawnPoint.position, SpawnPoint.rotation);
-        currentEnemies++; 
+        if (enemyPrefabs.Length == 0) return; // Evita errores si no hay enemigos en la lista
+
+        int randomIndex = Random.Range(0, enemyPrefabs.Length); // Elegir enemigo aleatorio
+        Instantiate(enemyPrefabs[randomIndex], SpawnPoint.position, SpawnPoint.rotation);
+        currentEnemies++;
     }
 
-    
     public void EnemyDestroyed()
     {
         currentEnemies--;
