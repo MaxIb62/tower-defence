@@ -6,7 +6,8 @@ public class bullet : MonoBehaviour
 {
     private Transform target;
 
-    public float Speed = 70f; 
+    public float Speed = 70f;
+    public float explosionRadio=0f;
     public void seek (Transform _target)
     {
         target = _target;
@@ -36,7 +37,7 @@ public class bullet : MonoBehaviour
         }
 
         transform.Translate(dir.normalized * distanceThisFRame, Space.World);
-
+        transform.LookAt(target);
     }
 
     void HitTarget()
@@ -44,9 +45,39 @@ public class bullet : MonoBehaviour
         if (target != null)
         {
             Debug.Log("Destruyendo target: " + target.name);
+            if(explosionRadio > 0f)
+            {
+                Explode();
+            }
+            else
+            {
+                Damage(target);
+            }
             Destroy(target.gameObject);
-            target = null; // Evita que otras balas intenten destruirlo
+            target = null; 
         }
         Destroy(gameObject);
+    }
+
+    void Explode()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadio);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.tag == "Enemy")
+            {
+                Damage(collider.transform);
+            }
+        }
+    }
+    void Damage (Transform enemy)
+    {
+        Destroy(enemy.gameObject);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadio);
     }
 }

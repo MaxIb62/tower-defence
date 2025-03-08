@@ -31,7 +31,7 @@ public class Turret : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance) // Eliminado el punto y coma aquí
+            if (distanceToEnemy < shortestDistance) 
             {
                 shortestDistance = distanceToEnemy;
                 nearestEnemy = enemy;

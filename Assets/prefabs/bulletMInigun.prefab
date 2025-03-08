@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1824213283555013299}
   - component: {fileID: 4164642965363624351}
   m_Layer: 0
-  m_Name: bullet
+  m_Name: bulletMInigun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,4 +118,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeecc69b17fe528469156a8b2d88d09d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 20
+  Speed: 10
+  explosionRadio: 0
